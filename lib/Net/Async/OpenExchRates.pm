@@ -3,6 +3,7 @@ package Net::Async::OpenExchRates;
 # ABSTRACT: Interaction with OpenExchangeRates API
 
 use v5.26;
+
 use warnings;
 use Object::Pad 0.800;
 
@@ -71,7 +72,7 @@ for repeated requests only if the API responded with C<304 HTTP> code for a prev
 As I<OpenExchangeRates API> offers L<Cache Control|https://docs.openexchangerates.org/reference/etags>
 utilizing ETag identifiers.
 Having this enabled is effective for saving on network bandwidth and faster responses,
-but not much on API usage quota as it will still be counted as a resource request. 
+but not much on API usage quota as it will still be counted as a resource request.
 
 =item cache_size => INT
 
@@ -87,7 +88,7 @@ C<default: 1>
 As every I<OpenExchangeRates API> L<subscription plan|https://openexchangerates.org/signup> comes with
 its own number of permitted requests per month and resources update frequency. This option is made purely
 to allow your program to query repeated requests without overwhelming API. If the request is already cached meaning we already have its
-response from a previous request invokation, it will check on the current resources C<update_frequency> from C<usage.json>
+response from a previous request invocation, it will check on the current resources C<update_frequency> from C<usage.json>
 API call, if the C<Last-Modified> timestamp HTTP header that is attached with our existing response compared to current time is less
 than C<update_frequency> then most probably even if we call the API it will return C<304 HTTP>, hence in this case
 respect the API and instead of requesting it to confirm, return the response we already have without requesting again.
@@ -182,7 +183,7 @@ field $_time_obj_from_date_str = sub{
     return $date;
 };
 
- 
+
 method configure_unknown(%args) {}
 ADJUST {
     if ($_use_cache) {
@@ -202,7 +203,7 @@ method _add_to_loop($loop) {
             decode_content           => 1,
             stall_timeout            => 15,
             user_agent               => 'Mozilla/4.0 (perl; Net::Async::OpenExchRates; VNEALV@cpan.org)',
-	    require_SSL              => 1,
+            require_SSL              => 1,
             +headers                 => {
                 authorization => join(' ', 'Token', $_app_id),
                 accept_encoding => 'application/json'
@@ -280,7 +281,7 @@ using other methods.
 
 async method do_request($page, %params) {
     my ( $headers, $response, $cache_key );
-    
+
     ($cache_key, $headers->{if_none_match}, $headers->{if_modified_since}, $response) = await $self->$cache_get(join('|', $page, map { $params{$_} || () } @$_api_query_params));
 
     if ( $_respect_api_frequency && defined $response && defined $headers->{if_modified_since} ) {
@@ -316,7 +317,7 @@ async method do_request($page, %params) {
             $_cache->set($cache_key => [$e_tag, $date_tag, $res]);
         }
         $response = $res;
-    
+
     } elsif ($request->code == 304) {
         $log->tracef('Not modified, using cached value for response for page: %s', $page);
     }
@@ -546,7 +547,6 @@ async method convert($value, $from, $to, $reverse_convert = 0) {
             join('/', 'convert', $value, $from, $to)
         );
     }
-    
 }
 
 =head2 ohlc
@@ -585,7 +585,7 @@ Optional list of symbols to filter result based on.
 =cut
 
 async method ohlc($date, $time, $period, $base = 'USD', @sym) {
-    
+
     my %date = $_date_validation->($date);
     my ($h, $m) = $time =~ /^([0-9][0-9]|[0-9]):?([0-9][0-9]|[0-9])?/;
     my $start = Time::Moment->from_string(sprintf('%s%s%sT%s%s00Z',
@@ -779,13 +779,13 @@ To get list of available API features.
 =cut
 
 =head1 INHERITED METHODS
- 
+
 =over 4
- 
+
 =item L<IO::Async::Notifier>
- 
+
 L<add_child|IO::Async::Notifier/add_child>, L<adopt_future|IO::Async::Notifier/adopt_future>, L<adopted_futures|IO::Async::Notifier/adopted_futures>, L<can_event|IO::Async::Notifier/can_event>, L<children|IO::Async::Notifier/children>, L<configure|IO::Async::Notifier/configure>, L<debug_printf|IO::Async::Notifier/debug_printf>, L<get_loop|IO::Async::Notifier/get_loop>, L<invoke_error|IO::Async::Notifier/invoke_error>, L<invoke_event|IO::Async::Notifier/invoke_event>, L<loop|IO::Async::Notifier/loop>, L<make_event_cb|IO::Async::Notifier/make_event_cb>, L<maybe_invoke_event|IO::Async::Notifier/maybe_invoke_event>, L<maybe_make_event_cb|IO::Async::Notifier/maybe_make_event_cb>, L<new|IO::Async::Notifier/new>, L<notifier_name|IO::Async::Notifier/notifier_name>, L<parent|IO::Async::Notifier/parent>, L<remove_child|IO::Async::Notifier/remove_child>, L<remove_from_parent|IO::Async::Notifier/remove_from_parent>
- 
+
 =back
 
 =cut
