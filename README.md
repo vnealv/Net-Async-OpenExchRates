@@ -25,6 +25,8 @@ Acting as an active Asynchronous API package for [Open Exchange Rates](https://o
 following its [API docs](https://docs.openexchangerates.org) along with providing extra functionalities
 like pre-validation, local caching and respecting API update frequency depending on your `APP_ID` subscription plan.
 
+For examples and more ways to use this package, please check Examples directory in [package distribution page](https://metacpan.org/dist/Net-Async-OpenExchRates)
+
 # CONSTRUCTOR
 
 ## new
@@ -362,9 +364,3 @@ To get list of current API usage response hash keys from ["usage"](#usage) call.
     $exch->app_features_keys();
 
 To get list of available API features.
-
-# INHERITED METHODS
-
-- [IO::Async::Notifier](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier)
-
-    [add\_child](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#add_child), [adopt\_future](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#adopt_future), [adopted\_futures](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#adopted_futures), [can\_event](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#can_event), [children](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#children), [configure](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#configure), [debug\_printf](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#debug_printf), [get\_loop](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#get_loop), [invoke\_error](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#invoke_error), [invoke\_event](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#invoke_event), [loop](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#loop), [make\_event\_cb](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#make_event_cb), [maybe\_invoke\_event](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#maybe_invoke_event), [maybe\_make\_event\_cb](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#maybe_make_event_cb), [new](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#new), [notifier\_name](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#notifier_name), [parent](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#parent), [remove\_child](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#remove_child), [remove\_from\_parent](https://metacpan.org/pod/IO%3A%3AAsync%3A%3ANotifier#remove_from_parent)
