@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+  - cpanfile on test fix
+
 0.002     2024-04-24 15:41:39+00:00 UTC
 
   - added simple tests
