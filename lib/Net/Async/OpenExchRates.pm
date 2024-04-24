@@ -9,7 +9,7 @@ use Object::Pad 0.800;
 
 class Net::Async::OpenExchRates :isa(IO::Async::Notifier);
 
-our $VERSION = 0.001;
+our $VERSION = 0.002;
 
 # AUTHORITY
 
@@ -183,7 +183,7 @@ field $_time_obj_from_date_str = sub{
         $date = Time::Moment->from_string(sprintf('%04d-%02d-%02d %s', $year, $_m_hash->{lc$month}, $day, $time), lenient => 1);
     } catch ($error) {
         $log->warnf('Unable to create time object from date string. %s %s', $date_str, $error);
-	$date = undef;
+        $date = undef;
     }
     return $date;
 };

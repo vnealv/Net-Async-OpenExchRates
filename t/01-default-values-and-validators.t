@@ -1,8 +1,8 @@
 #!/usr/bin/perl
- 
+
 use strict;
 use warnings;
- 
+
 use Test2::V0;
 use Net::Async::OpenExchRates;
 use Syntax::Keyword::Try;
@@ -26,8 +26,8 @@ use Syntax::Keyword::Try;
 
     for my $f ($class->fields()) {
         my $name = '\\' . $f->name;
-        next unless grep { /${name}/ } qw($_use_cache $_respect_api_frequency $_enable_pre_validation $_local_conversion $_keep_http_response); 
-        ok $f->value($exch), $f->name .' set to default 1'; 
+        next unless grep { /${name}/ } qw($_use_cache $_respect_api_frequency $_enable_pre_validation $_local_conversion $_keep_http_response);
+        ok $f->value($exch), $f->name .' set to default 1';
     }
 
     my $cache_size_field = $class->get_field('$_cache_size');
@@ -100,6 +100,6 @@ use Syntax::Keyword::Try;
         my $time = $time_from_date_sub->($passing_time);
         like ref($time), qr/Time::Moment/, "defined Time::Moment objectr for $passing_time";
     }
-} 
+}
 
 done_testing;
